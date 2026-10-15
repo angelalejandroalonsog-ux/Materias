@@ -12,7 +12,11 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        //
+        $materias = Materia::all();
+
+        return view('registros')->with([
+            'materias' => $materias,
+        ]);
     }
 
     /**
@@ -20,7 +24,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('formulario');
     }
 
     /**
@@ -28,7 +32,14 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $materia = new Materia();
+        $materia->nombre = $request->nombre;
+        $materia->creditos = $request->creditos; 
+        $materia->profesor = $request->profesor; 
+        $materia->save();
+
+        return redirect()->route('materia.index');
+
     }
 
     /**
@@ -36,7 +47,7 @@ class MateriaController extends Controller
      */
     public function show(Materia $materia)
     {
-        //
+        return view('detalle',compact('materia'));
     }
 
     /**
@@ -44,7 +55,7 @@ class MateriaController extends Controller
      */
     public function edit(Materia $materia)
     {
-        //
+        return view('editar', compact('materia'));
     }
 
     /**
@@ -52,7 +63,12 @@ class MateriaController extends Controller
      */
     public function update(Request $request, Materia $materia)
     {
-        //
+        $materia->nombre = $request->nombre;
+        $materia->creditos = $request->creditos; 
+        $materia->profesor = $request->profesor; 
+        $materia->save();
+
+        return redirect()->route('materia.show', $materia);
     }
 
     /**
@@ -60,6 +76,8 @@ class MateriaController extends Controller
      */
     public function destroy(Materia $materia)
     {
-        //
+        $materia->delete();
+
+        return redirect()->route('materia.index');
     }
 }
