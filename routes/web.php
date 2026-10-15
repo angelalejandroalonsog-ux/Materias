@@ -8,4 +8,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('materia', MateriaController::class);
+Route::resource('materia', MateriaController::class)
+    ->parameters(['materia' => 'materia']);
