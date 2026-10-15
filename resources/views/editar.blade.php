@@ -40,11 +40,12 @@
 
         <div class="mb-3>"
             <label for="profesor" class="form-label">Profesor:</label>
-            <input type="text"
-                name="Profesor"
-                class="form-control"
-                id="Profesor"
+            <input
+                type="text"
+                name="profesor"
+                id="profesor"
                 value="{{ $materia->profesor }}"
+                class="form-control"
                 required
             >
         </div>
